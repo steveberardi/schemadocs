@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <title>Data Models</title>
+        <style>
+            a, a.nav-link {
+                color: rgb(77, 123, 224);
+            }
+            dt {
+                font-size: 1.3em;
+                font-family: var(--bs-font-monospace)!important;
+            }
+            dd {
+                margin-bottom: 40px;
+            }
+            p {
+                margin-bottom: 8px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar bg-primary">
+            <div class="container-fluid">
+                <div class="text-light navbar-brand" href="#">Data Models</div>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-sm-2 bg-light p-2" style="height: 100vh">
+
+                <nav class="nav flex-column">
+                    {% for obj in data_objects %}
+                    <a class="nav-link" href="{{ obj.name }}.html">{{ obj.name }}</a>
+                    {% endfor %}
+                </nav>
+
+            </div>
+
+            <div class="col">
+
+                <div class="container mt-3">
+                    <!-- Schema Details -->
+                    
+                    {% block content %}{% endblock %}
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
