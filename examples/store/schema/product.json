@@ -19,5 +19,5 @@
       "exclusiveMinimum": 0
     }
   },
-  "required": [ "productId", "productName", "price" ]
+  "required": [ "id", "name", "price" ]
 }
