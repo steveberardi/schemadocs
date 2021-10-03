@@ -1,5 +1,5 @@
-run: venv/bin/activate
-	./venv/bin/python schemadocs/main.py build ./examples/store/schema ./examples/store/docs
+example: venv/bin/activate
+	./venv/bin/python schemadocs/main.py build ./example/schema ./example/docs
 
 venv/bin/activate: requirements.txt
 	python -m venv venv
@@ -9,4 +9,4 @@ clean:
 	rm -rf __pycache__
 	rm -rf venv
 
-.PHONY: run clean
+.PHONY: clean example
