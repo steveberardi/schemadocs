@@ -10,6 +10,15 @@ env = Environment(
 def build_index(schemas):
     pass
 
+def render_index():
+    template = env.get_template("index.html")
+
+    context = {
+        "index": []
+    }
+
+    return template.render(**context)
+
 def render_doc(object_schema):
     template = env.get_template("object.html")
 
