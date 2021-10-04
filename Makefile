@@ -1,5 +1,5 @@
 example: venv/bin/activate
-	./venv/bin/python schemadocs/main.py build ./example/schema ./example/docs
+	./venv/bin/python -m schemadocs.cli build ./example/schema ./example/docs
 
 venv/bin/activate: requirements.txt
 	python -m venv venv

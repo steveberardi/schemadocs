@@ -1,0 +1,1 @@
+from schemadocs.cli import cli

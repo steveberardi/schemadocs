@@ -3,7 +3,7 @@ from pathlib import Path
 
 import click
 
-from build import render_doc
+from schemadocs.build import render_doc
 
 @click.group()
 def cli():
