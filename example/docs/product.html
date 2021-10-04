@@ -4,12 +4,18 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <title>Data Models</title>
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Open+Sans:wght@700&family=Roboto+Mono:wght@400;500&display=swap');
+
+            body {
+                font-family: 'Lato', sans-serif;
+            }
             a, a.nav-link {
                 color: rgb(77, 123, 224);
             }
             dt {
                 font-size: 1.3em;
-                font-family: var(--bs-font-monospace)!important;
+                
+                /*font-family: var(--bs-font-monospace)!important;*/
             }
             dd {
                 margin-bottom: 40px;
@@ -17,18 +23,25 @@
             p {
                 margin-bottom: 8px;
             }
+            .font-monospace {
+                font-family: 'Roboto Mono', monospace !important;
+                font-weight: 500;
+            }
+            h1,h2,h3,h4,h5,h6 {
+                font-family: 'Open Sans', sans-serif;
+            }
         </style>
     </head>
 
     <body>
-        <nav class="navbar bg-primary">
-            <div class="container-fluid">
+        <nav class="navbar navbar-primary bg-primary p-2">
+            <div class="container-fluid mb-0">
                 <div class="text-light navbar-brand" href="#">Data Models</div>
             </div>
         </nav>
 
-        <div class="row">
-            <div class="col-sm-2 bg-light p-2" style="height: 100vh">
+        <div class="row bg-light">
+            <div class="col-lg-2 bg-light p-2">
 
                 <nav class="nav flex-column">
                     
@@ -36,35 +49,52 @@
 
             </div>
 
-            <div class="col">
+            <div class="col bg-white">
 
                 <div class="container mt-3">
                     <!-- Schema Details -->
                     
                     
-<h3><strong>Product</strong></h3>
-<p class="lead text-muted">A product from Acme&#39;s catalog</p>
+<h2><strong>Product</strong></h2>
+
 <hr>
+<p class="lead text-muted">A product from Acme&#39;s catalog</p>
+<br/>
+
 <dl class="row">
     
-    <dt class="col-sm-2">id</dt>
+    <dt class="col-sm-3 font-monospace">id</dt>
     <dd class="col-sm-9">
         <p><code>integer</code></p>
         <p>The unique identifier for a product</p>
         
     </dd>
     
-    <dt class="col-sm-2">name</dt>
+    <dt class="col-sm-3 font-monospace">name</dt>
     <dd class="col-sm-9">
         <p><code>string</code></p>
         <p>Name of the product</p>
         
     </dd>
     
-    <dt class="col-sm-2">price</dt>
+    <dt class="col-sm-3 font-monospace">description</dt>
+    <dd class="col-sm-9">
+        <p><code>string</code></p>
+        <p>Description of the product</p>
+        
+    </dd>
+    
+    <dt class="col-sm-3 font-monospace">price</dt>
     <dd class="col-sm-9">
         <p><code>number</code></p>
         <p>The price of the product</p>
+        
+    </dd>
+    
+    <dt class="col-sm-3 font-monospace">unitCost</dt>
+    <dd class="col-sm-9">
+        <p><code>number</code></p>
+        <p>The unit cost of the product</p>
         
     </dd>
     

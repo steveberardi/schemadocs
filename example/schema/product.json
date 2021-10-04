@@ -13,8 +13,17 @@
       "description": "Name of the product",
       "type": "string"
     },
+    "description": {
+      "description": "Description of the product",
+      "type": "string"
+    },
     "price": {
       "description": "The price of the product",
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "unitCost": {
+      "description": "The unit cost of the product",
       "type": "number",
       "exclusiveMinimum": 0
     }
