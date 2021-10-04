@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/order.schema.json",
+    "title": "Order",
+    "description": "An order from Acme",
+    "type": "object",
+    "properties": {
+      "id": {
+        "description": "The unique identifier for an order",
+        "type": "integer"
+      },
+      "products": {
+        "description": "List of products (IDs) purchased",
+        "type": "array",
+        "items": {
+            "type": "number"
+        }
+      }
+    },
+    "required": [ "id", "products" ]
+  }
