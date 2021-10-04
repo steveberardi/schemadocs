@@ -9,9 +9,16 @@
 
 <dl class="row">
     {% for property, details in data_object.properties.items() %}
-    <dt class="col-sm-3 font-monospace">{{ property }}</dt>
+    <dt class="col-sm-3">
+        <h5 class="font-monospace">{{ property }}</h5>
+    </dt>
     <dd class="col-sm-9">
-        <p><code>{{ details.type }}</code></p>
+        <p>
+            <code>{{ details.type }}</code>
+            {% if property in data_object.required %}
+            <span class="badge bg-secondary mx-2">required</span>
+            {% endif %}
+        </p>
         <p>{{ details.description }}</p>
         
     </dd>

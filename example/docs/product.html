@@ -13,9 +13,10 @@
                 color: rgb(77, 123, 224);
             }
             dt {
+                /*
                 font-size: 1.3em;
                 
-                /*font-family: var(--bs-font-monospace)!important;*/
+                font-family: var(--bs-font-monospace)!important;*/
             }
             dd {
                 margin-bottom: 40px;
@@ -63,37 +64,68 @@
 
 <dl class="row">
     
-    <dt class="col-sm-3 font-monospace">id</dt>
+    <dt class="col-sm-3">
+        <h5 class="font-monospace">id</h5>
+    </dt>
     <dd class="col-sm-9">
-        <p><code>integer</code></p>
+        <p>
+            <code>integer</code>
+            
+            <span class="badge bg-secondary mx-2">required</span>
+            
+        </p>
         <p>The unique identifier for a product</p>
         
     </dd>
     
-    <dt class="col-sm-3 font-monospace">name</dt>
+    <dt class="col-sm-3">
+        <h5 class="font-monospace">name</h5>
+    </dt>
     <dd class="col-sm-9">
-        <p><code>string</code></p>
+        <p>
+            <code>string</code>
+            
+            <span class="badge bg-secondary mx-2">required</span>
+            
+        </p>
         <p>Name of the product</p>
         
     </dd>
     
-    <dt class="col-sm-3 font-monospace">description</dt>
+    <dt class="col-sm-3">
+        <h5 class="font-monospace">description</h5>
+    </dt>
     <dd class="col-sm-9">
-        <p><code>string</code></p>
+        <p>
+            <code>string</code>
+            
+        </p>
         <p>Description of the product</p>
         
     </dd>
     
-    <dt class="col-sm-3 font-monospace">price</dt>
+    <dt class="col-sm-3">
+        <h5 class="font-monospace">price</h5>
+    </dt>
     <dd class="col-sm-9">
-        <p><code>number</code></p>
+        <p>
+            <code>number</code>
+            
+            <span class="badge bg-secondary mx-2">required</span>
+            
+        </p>
         <p>The price of the product</p>
         
     </dd>
     
-    <dt class="col-sm-3 font-monospace">unitCost</dt>
+    <dt class="col-sm-3">
+        <h5 class="font-monospace">unitCost</h5>
+    </dt>
     <dd class="col-sm-9">
-        <p><code>number</code></p>
+        <p>
+            <code>number</code>
+            
+        </p>
         <p>The unit cost of the product</p>
         
     </dd>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2><strong>Index</strong></h2>
+
+<hr>
+<br/>
+
+<ul>
+{% for schema in index %}
+    <li><a href="{{ schema.name|lower }}.html">{{ schema.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
