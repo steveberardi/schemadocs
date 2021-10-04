@@ -7,6 +7,9 @@ env = Environment(
     autoescape=select_autoescape()
 )
 
+def build_index(schemas):
+    pass
+
 def render_doc(object_schema):
     template = env.get_template("object.html")
 
