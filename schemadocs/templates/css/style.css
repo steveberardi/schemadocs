@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Open+Sans:wght@700&family=Roboto+Mono:wght@400;500&display=swap');
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+a, a.nav-link {
+    color: rgb(77, 123, 224);
+}
+dt {
+    /*
+    font-size: 1.3em;
+    font-family: var(--bs-font-monospace)!important;
+    */
+}
+dd {
+    margin-bottom: 40px;
+}
+p {
+    margin-bottom: 8px;
+}
+.font-monospace {
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 500;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Open Sans', sans-serif;
+}
