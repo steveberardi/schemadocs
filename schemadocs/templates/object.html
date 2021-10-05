@@ -16,62 +16,17 @@
 <br/>
 
 <dl class="row">
-    {% for property, details in schema.properties.items() %}
 
-    <dt class="col-sm-3 row-striped p-3">
-        <h5 class="font-monospace">{{ property }}</h5>
-    </dt>
-    <dd class="col-sm-9 row-striped h-100 mb-0 p-3">
-        
-        <p>
-            {% if details["$ref"] %}
-                {% if details["$ref"] == "#" %}
-                <a href="#">{{ schema.title }}</a>
-                
-                {% elif details["$ref"].startswith("#/$defs") %}
+    <!-- Required Properties first -->
+    {% for property in schema.required|sort %}
+        {% set details = schema.properties[property] %}
+        {% include "property.html" %}
+    {% endfor %}
 
-                <!-- TODO: handle this case! -->
-                
-                {% else %}
-                <a href="{{ index[details['$ref']].title }}.html">{{ index[details['$ref']].title }}</a>
-                
-                {% endif %}
-            
-            {% else %}
-            <code>{{ details.type }}</code>
-            {% endif %}
-            {% if property in schema.required %}
-            <span class="badge bg-secondary mx-2">required</span>
-            {% endif %}
-        </p>
-        <p>{{ details.description }}</p>
-
-        <!-- Type-Specific Keywords-->
-        {% if details.type == "string" %}
-        
-            {{ typeKeyword("Min Length", details.minLength) }}
-            {{ typeKeyword("Max Length", details.maxLength )}}
-            {{ typeKeyword("RegEx Pattern", details.pattern )}}
-            {{ typeKeyword("Format", details.format )}}
-
-        {% elif details.type == "number" %}
-
-            {{ typeKeyword("Multiple Of", details.multipleOf) }}
-            {{ typeKeyword("Min", details.minimum) }}
-            {{ typeKeyword("Greater than or equal to", details.exclusiveMinimum) }}
-            {{ typeKeyword("Max", details.maximum) }}
-            {{ typeKeyword("Less than or equal to", details.exclusiveMaximum) }}
-        
-        {% elif details.type == "array" %}
-
-            {{ typeKeyword("Min Length", details.minItems) }}
-            {{ typeKeyword("Max Length", details.maxItems) }}
-            {{ typeKeyword("Unique Items", details.uniqueItems) }}
-
-        {% endif %}
-        
-    </dd>
-
+    <!-- Optioinal Properties -->
+    {% for property in schema.properties.keys()|sort if property not in schema.required %}
+        {% set details = schema.properties[property] %}    
+        {% include "property.html" %}
     {% endfor %}
 </dl>
 
