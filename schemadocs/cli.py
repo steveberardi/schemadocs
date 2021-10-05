@@ -5,7 +5,7 @@ from pathlib import Path
 
 import click
 
-from schemadocs.build import render_doc, render_index
+from schemadocs.build import build_index, render_object, render_index
 
 
 BASE_DIR = Path(__file__).parent.resolve()
@@ -21,24 +21,30 @@ def cli():
 def build(source, destination):
     click.secho("\N{hammer and wrench}  Building the docs...", bold=True)
     
+    schemas = []
     source_path = Path(source).resolve().glob("**/*.json")
     destination_path = Path(destination).resolve()
     
     for json_filename in source_path:
         with open(json_filename) as json_file:
-            object_schema = json.loads(json_file.read())
+            schema = json.loads(json_file.read())
 
-            click.secho(f"Creating docs for: {object_schema['title']}", fg="blue")
+            schemas.append(schema)
 
-            rendered_doc = render_doc(object_schema)
-            output_filename = destination_path / f"{object_schema['title'].lower()}.html"
-            
-            with open(output_filename, "w") as outfile:
-                outfile.write(rendered_doc)
+    index = build_index(schemas)
+
+    for schema in schemas:
+        click.secho(f"Creating docs for: {schema['title']}", fg="blue")
+
+        rendered_doc = render_object(schema, index)
+        output_filename = destination_path / f"{schema['title'].lower()}.html"
+        
+        with open(output_filename, "w") as outfile:
+            outfile.write(rendered_doc)
 
     # create index page
     with open(destination_path / "index.html", "w") as index_file:
-        index_file.write(render_index())
+        index_file.write(render_index(index))
 
     # copy css style
     shutil.copytree(

@@ -7,8 +7,8 @@
 <br/>
 
 <ul>
-{% for schema in index %}
-    <li><a href="{{ schema.name|lower }}.html">{{ schema.name }}</a></li>
+{% for name, schema in index.items() %}
+    <li><a href="{{ name|lower }}.html">{{ name }}</a></li>
 {% endfor %}
 </ul>
 

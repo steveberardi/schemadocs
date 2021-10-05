@@ -10,27 +10,25 @@
     <body>
         <nav class="navbar navbar-primary bg-primary p-2">
             <div class="container-fluid mb-0">
-                <div class="text-light navbar-brand" href="#">Data Models</div>
+                <a class="text-light navbar-brand" href="index.html">Data Models</a>
             </div>
         </nav>
 
         <div class="row bg-light">
-            <div class="col-2 bg-light p-3">
+            <div class="col-lg-2 bg-light p-3">
                 <ul class="nav nav-pills flex-column mb-auto">
-                    {% for obj in data_objects %}
-                    <a class="nav-link" href="{{ obj.name|lower }}.html">{{ obj.name }}</a>
+                    {% for name, schema in index.items() %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ name|lower }}.html">{{ name }}</a>
+                    </li>
                     {% endfor %}
-                    <li class="nav-item">hello</li>
-                    <li class="nav-item">hello</li>
-                    <li class="nav-item">hello</li>
                 </ul>
             </div>
 
             <div class="col bg-white">
-
                 <div class="container mt-3">
-                    <!-- Schema Details -->
                     
+                    <!-- Schema Details -->
                     {% block content %}{% endblock %}
 
                 </div>

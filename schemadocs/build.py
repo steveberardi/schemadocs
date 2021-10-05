@@ -8,23 +8,26 @@ env = Environment(
 )
 
 def build_index(schemas):
-    pass
+    index = {}
+    for schema in schemas:
+        index[schema["title"]] = schema
+    return index
 
-def render_index():
+def render_index(index):
     template = env.get_template("index.html")
 
     context = {
-        "index": []
+        "index": index
     }
 
     return template.render(**context)
 
-def render_doc(object_schema):
+def render_object(object_schema, index=None):
     template = env.get_template("object.html")
 
     context = {
         "data_object": object_schema,
-        "data_objects": []
+        "index": index
     }
 
     return template.render(**context)
