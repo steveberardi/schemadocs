@@ -44,7 +44,13 @@
             {{ typeKeyword("Greater than or equal to", details.exclusiveMinimum) }}
             {{ typeKeyword("Max", details.maximum) }}
             {{ typeKeyword("Less than or equal to", details.exclusiveMaximum) }}
-            
+        
+        {% elif details.type == "array" %}
+
+            {{ typeKeyword("Min Length", details.minItems) }}
+            {{ typeKeyword("Max Length", details.maxItems) }}
+            {{ typeKeyword("Unique Items", details.uniqueItems) }}
+
         {% endif %}
         
     </dd>

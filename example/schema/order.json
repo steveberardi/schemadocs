@@ -14,7 +14,8 @@
         "type": "array",
         "items": {
             "type": "number"
-        }
+        },
+        "minItems": 1
       }
     },
     "required": [ "id", "products" ]
