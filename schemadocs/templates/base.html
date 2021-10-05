@@ -19,7 +19,7 @@
                 <ul class="nav nav-pills flex-column mb-auto">
                     {% for key in index.keys()|sort %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ key|lower }}.html">{{ key }}</a>
+                        <a class="nav-link" href="{{ index[key].title|lower }}.html">{{ index[key].title }}</a>
                     </li>
                     {% endfor %}
                 </ul>

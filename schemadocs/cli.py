@@ -6,7 +6,7 @@ from pathlib import Path
 import click
 import jsonschema
 
-from schemadocs.build import build_index, render_object, render_index
+from schemadocs.build import validate_schema, build_index, render_object, render_index, SchemaValueError
 
 
 BASE_DIR = Path(__file__).parent.resolve()
@@ -32,7 +32,8 @@ def validate(source):
         click.secho(f"Checking schema: {schema['title']}", fg="blue")
         try:
             jsonschema.Draft7Validator.check_schema(schema)
-        except jsonschema.exceptions.SchemaError as e:
+            validate_schema(schema)
+        except (jsonschema.exceptions.SchemaError, SchemaValueError) as e:
             errors = True
             click.secho(f'- {str(e)}', fg='red')
 

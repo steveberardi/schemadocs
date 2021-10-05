@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/order.schema.json",
+    "$id": "https://example.com/schemas/order",
     "title": "Order",
     "description": "An order from Acme",
     "type": "object",
