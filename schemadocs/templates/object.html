@@ -2,7 +2,7 @@
 
 {% macro typeKeyword(display_name, value) -%}
     {% if value is defined %}
-        <p>
+        <p class="small">
             <strong>{{ display_name }}</strong>: {{ value }}
         </p>
     {% endif %}

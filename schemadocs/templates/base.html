@@ -15,14 +15,15 @@
         </nav>
 
         <div class="row bg-light">
-            <div class="col-lg-2 bg-light p-2">
-
-                <nav class="nav flex-column">
+            <div class="col-2 bg-light p-3">
+                <ul class="nav nav-pills flex-column mb-auto">
                     {% for obj in data_objects %}
                     <a class="nav-link" href="{{ obj.name|lower }}.html">{{ obj.name }}</a>
                     {% endfor %}
-                </nav>
-
+                    <li class="nav-item">hello</li>
+                    <li class="nav-item">hello</li>
+                    <li class="nav-item">hello</li>
+                </ul>
             </div>
 
             <div class="col bg-white">
