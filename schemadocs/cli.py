@@ -11,6 +11,12 @@ from schemadocs.build import build_index, render_object, render_index
 
 BASE_DIR = Path(__file__).parent.resolve()
 
+def walk_schema_files(source):
+    source_path = Path(source).resolve().glob("**/*.json")
+    for json_filename in source_path:
+        with open(json_filename) as json_file:
+            yield json.loads(json_file.read())
+
 @click.group()
 def cli():
     pass
@@ -20,18 +26,15 @@ def cli():
 @click.argument('source', default=".")
 def validate(source):
     click.secho("\U0001F50D  Validating schema...", bold=True)
-    source_path = Path(source).resolve().glob("**/*.json")
     errors = False
 
-    for json_filename in source_path:
-        with open(json_filename) as json_file:
-            schema = json.loads(json_file.read())
-            click.secho(f"Checking schema: {schema['title']}", fg="blue")
-            try:
-                jsonschema.Draft7Validator.check_schema(schema)
-            except jsonschema.exceptions.SchemaError as e:
-                errors = True
-                click.secho(f'- {str(e)}', fg='red')
+    for schema in walk_schema_files(source):
+        click.secho(f"Checking schema: {schema['title']}", fg="blue")
+        try:
+            jsonschema.Draft7Validator.check_schema(schema)
+        except jsonschema.exceptions.SchemaError as e:
+            errors = True
+            click.secho(f'- {str(e)}', fg='red')
 
     if errors:
         raise click.ClickException("Schema validation failed")
@@ -45,21 +48,15 @@ def validate(source):
 def build(source, destination):
     click.secho("\N{hammer and wrench}  Building the docs...", bold=True)
     
-    schemas = []
-    source_path = Path(source).resolve().glob("**/*.json")
     destination_path = Path(destination).resolve()
-    
-    for json_filename in source_path:
-        with open(json_filename) as json_file:
-            schema = json.loads(json_file.read())
 
-            schemas.append(schema)
-
+    # read all schemas and build index
+    schemas = [schema for schema in walk_schema_files(source)]
     index = build_index(schemas)
 
+    # create doc page for each schema
     for schema in schemas:
         click.secho(f"Creating docs for: {schema['title']}", fg="blue")
-
         rendered_doc = render_object(schema, index)
         output_filename = destination_path / f"{schema['title'].lower()}.html"
         
