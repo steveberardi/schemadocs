@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% macro typeKeyword(display_name, value) -%}
+    <p>
+        <strong>{{ display_name }}</strong>: {{ value }}
+    </p>
+{%- endmacro %}
+
 {% block content %}
 <h2><strong>{{ data_object.title }}</strong></h2>
 
@@ -20,6 +26,27 @@
             {% endif %}
         </p>
         <p>{{ details.description }}</p>
+
+        <!-- Type-Specific Keywords-->
+        {% if details.type == "string" %}
+        
+            {% if details.minLength %}
+                {{ typeKeyword("Min Length", details.minLength) }}
+            {% endif %}
+
+            {% if details.maxLength %}
+                {{ typeKeyword("Max Length", details.maxLength )}}
+            {% endif %}
+
+            {% if details.pattern %}
+                {{ typeKeyword("RegEx Pattern", details.pattern )}}
+            {% endif %}
+
+            {% if details.format %}
+                {{ typeKeyword("Format", details.format )}}
+            {% endif %}
+
+        {% endif %}
         
     </dd>
     {% endfor %}
