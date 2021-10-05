@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% macro typeKeyword(display_name, value) -%}
-    <p>
-        <strong>{{ display_name }}</strong>: {{ value }}
-    </p>
+    {% if value is defined %}
+        <p>
+            <strong>{{ display_name }}</strong>: {{ value }}
+        </p>
+    {% endif %}
 {%- endmacro %}
 
 {% block content %}
@@ -30,22 +32,19 @@
         <!-- Type-Specific Keywords-->
         {% if details.type == "string" %}
         
-            {% if details.minLength %}
-                {{ typeKeyword("Min Length", details.minLength) }}
-            {% endif %}
+            {{ typeKeyword("Min Length", details.minLength) }}
+            {{ typeKeyword("Max Length", details.maxLength )}}
+            {{ typeKeyword("RegEx Pattern", details.pattern )}}
+            {{ typeKeyword("Format", details.format )}}
 
-            {% if details.maxLength %}
-                {{ typeKeyword("Max Length", details.maxLength )}}
-            {% endif %}
+        {% elif details.type == "number" %}
 
-            {% if details.pattern %}
-                {{ typeKeyword("RegEx Pattern", details.pattern )}}
-            {% endif %}
-
-            {% if details.format %}
-                {{ typeKeyword("Format", details.format )}}
-            {% endif %}
-
+            {{ typeKeyword("Multiple Of", details.multipleOf) }}
+            {{ typeKeyword("Min", details.minimum) }}
+            {{ typeKeyword("Greater than or equal to", details.exclusiveMinimum) }}
+            {{ typeKeyword("Max", details.maximum) }}
+            {{ typeKeyword("Less than or equal to", details.exclusiveMaximum) }}
+            
         {% endif %}
         
     </dd>
