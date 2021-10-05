@@ -6,22 +6,24 @@ body {
 a, a.nav-link {
     color: rgb(77, 123, 224);
 }
-dt {
-    /*
-    font-size: 1.3em;
-    font-family: var(--bs-font-monospace)!important;
-    */
-}
-dd {
-    margin-bottom: 40px;
-}
+
 p {
     margin-bottom: 6px;
 }
+
 .font-monospace {
     font-family: 'Roboto Mono', monospace !important;
     font-weight: 500;
 }
+
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Open Sans', sans-serif;
+}
+
+/* Striped Rows */
+.row-striped:nth-of-type(odd){
+    background-color: #f5f9fd;
+}
+.row-striped:nth-of-type(even){
+    background-color: #ffffff;
 }
