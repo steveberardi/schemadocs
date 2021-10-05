@@ -22,8 +22,23 @@
         <h5 class="font-monospace">{{ property }}</h5>
     </dt>
     <dd class="col-sm-9 row-striped h-100 mb-0 p-3">
+        
         <p>
+            {% if details["$ref"] %}
+                {% if details["$ref"] == "#" %}
+                <a href="#">{{ schema.title }}</a>
+                
+                {% elif details["$ref"].startswith("#/$defs") %}
+
+                
+                {% else %}
+                <a href="{{ index[details['$ref']].title }}.html">{{ index[details['$ref']].title }}</a>
+                
+                {% endif %}
+            
+            {% else %}
             <code>{{ details.type }}</code>
+            {% endif %}
             {% if property in schema.required %}
             <span class="badge bg-secondary mx-2">required</span>
             {% endif %}

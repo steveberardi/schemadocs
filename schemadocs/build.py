@@ -15,7 +15,7 @@ class SchemaValueError(Exception):
 
 def validate_schema(schema):
     """
-    Validates schema based on schemadocs specific requirements:
+    Validates schema based on schemadocs-specific requirements:
     
     - Each schema must have the following attributes: $id, title
     """

@@ -16,7 +16,24 @@
             "type": "number"
         },
         "minItems": 1
+      },
+      "customer": {
+        "$ref": "/schemas/customer"
+      },
+      "notes": {
+        "$ref": "#/$defs/notes"
       }
     },
-    "required": [ "id", "products" ]
+    "required": [ "id", "products", "customer" ],
+    "$defs": {
+      "notes": { 
+        "title": "OrderNotes",
+        "type": "object",
+        "properties": {
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
   }
