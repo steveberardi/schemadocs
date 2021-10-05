@@ -14,12 +14,12 @@
             </div>
         </nav>
 
-        <div class="row bg-light">
+        <div class="row bg-light vh-100">
             <div class="col-lg-2 bg-light p-3">
                 <ul class="nav nav-pills flex-column mb-auto">
-                    {% for name, schema in index.items() %}
+                    {% for key in index.keys()|sort %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ name|lower }}.html">{{ name }}</a>
+                        <a class="nav-link" href="{{ key|lower }}.html">{{ key }}</a>
                     </li>
                     {% endfor %}
                 </ul>
