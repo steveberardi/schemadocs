@@ -30,6 +30,7 @@
                 
                 {% elif details["$ref"].startswith("#/$defs") %}
 
+                <!-- TODO: handle this case! -->
                 
                 {% else %}
                 <a href="{{ index[details['$ref']].title }}.html">{{ index[details['$ref']].title }}</a>
