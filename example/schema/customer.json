@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/customer.schema.json",
+    "title": "Customer",
+    "description": "A customer at Acme",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "Unique identifier for the customer",
+            "type": "integer"
+        },
+        "name": {
+            "type": "string",
+            "description": "Full name of customer"
+        },
+        "email": {
+            "type": "string",
+            "format": "email"
+        }
+    },
+    "required": [ "id", "name", "email" ]
+  }

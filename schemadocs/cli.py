@@ -4,6 +4,7 @@ import shutil
 from pathlib import Path
 
 import click
+import jsonschema
 
 from schemadocs.build import build_index, render_object, render_index
 
@@ -13,6 +14,29 @@ BASE_DIR = Path(__file__).parent.resolve()
 @click.group()
 def cli():
     pass
+
+
+@cli.command()
+@click.argument('source', default=".")
+def validate(source):
+    click.secho("\U0001F50D  Validating schema...", bold=True)
+    source_path = Path(source).resolve().glob("**/*.json")
+    errors = False
+
+    for json_filename in source_path:
+        with open(json_filename) as json_file:
+            schema = json.loads(json_file.read())
+            click.secho(f"Checking schema: {schema['title']}", fg="blue")
+            try:
+                jsonschema.Draft7Validator.check_schema(schema)
+            except jsonschema.exceptions.SchemaError as e:
+                errors = True
+                click.secho(f'- {str(e)}', fg='red')
+
+    if errors:
+        raise click.ClickException("Schema validation failed")
+
+    click.secho('\N{check mark} Schema looks good!', fg='green')
 
 
 @cli.command()
